@@ -56,9 +56,6 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'account.Account'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# DEFAULT_FROM_EMAIL = 'noreply@allotease.com'
-
 EMAIL_BACKEND = 'anymail.backends.brevo.EmailBackend'
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = 587
@@ -67,9 +64,8 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 
-
 ANYMAIL = {
-    "BREVO_API_KEY": config('BREVO_API_KEY')
+    "BREVO_API_KEY": config('BREVO_API_KEY') # Email Service Provider
 }
 
 
