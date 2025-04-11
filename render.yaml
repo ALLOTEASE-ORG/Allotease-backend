@@ -1,0 +1,22 @@
+databases:
+  - name: allotease_test_db2_ycxs
+    plan: free
+    databaseName: allotease_test_db2_ycxs
+    user: allotease_test_db2_ycxs_user
+
+services:
+  - type: web
+    plan: free
+    name: Easebackend
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "python -m gunicorn core.wsgi:application -k uvicorn.workers.UvicornWorker"    
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: allotease_test_db2_ycxs
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
