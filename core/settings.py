@@ -15,9 +15,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '127.0.0.1:8000', 'easebackend.onrender.com']
+ALLOWED_HOSTS = ['easebackend.onrender.com']
 CSRF_TRUSTED_ORIGINS = ['https://easebackend.onrender.com', 'http://127.0.0.1:8000']
 
 # Application definition
@@ -128,6 +128,20 @@ DATABASES = {
 }
 
 # DATABASES['default'] = dj_database_url.parse(config('External_Database_URL'))
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('NAME'),
+        'USER': config('USER'),
+        'PASSWORD': config('PASSWORD'),
+        'HOST': config('HOST'),
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
+    }
+}
 
 
 # Password validation
